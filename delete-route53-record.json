@@ -1,0 +1,18 @@
+{
+    "Comment": "Deleting CNAME record",
+    "Changes": [
+        {
+            "Action": "DELETE",
+            "ResourceRecordSet": {
+                "Name": "resume.zmyslony.ovh.",
+                "Type": "CNAME",
+                "TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "d2slvzbkw01lxs.cloudfront.net"
+                    }
+                ]
+            }
+        }
+    ]
+}

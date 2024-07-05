@@ -1,0 +1,13 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": [
+				"sqs:*"
+			],
+			"Resource": "arn:aws:sqs:*:743241827577:queue-for-ses-service"
+		}
+	]
+}

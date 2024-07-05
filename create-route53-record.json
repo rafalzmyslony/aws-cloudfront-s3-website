@@ -1,0 +1,18 @@
+{
+  "Comment": "Adding CNAME record",
+  "Changes": [
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "Name": "_a647e4dbc451af59c09e3d97322127fb.resume.zmyslony.ovh.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "_ffa18289ab4e591535f27bfd23ab8996.sdgjtdhdhz.acm-validations.aws."
+          }
+        ]
+      }
+    }
+  ]
+}
