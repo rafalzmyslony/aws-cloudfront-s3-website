@@ -475,18 +475,20 @@ Another solution is to fix our lambda code (e.g. we can add try statement) and p
 aws sqs purge-queue --queue-url $QUEUE_URL
 ```
 
-- This setup is asynchronous - Api Gateway receives
-synchronous is more expensive - more time it takes to process
+- This setup is asynchronous - Api Gateway receives request and pass it to SQS queue. Then immediately return status code 200. And rest of logic is processed inpedently of user. If we choose synchronous approach, then we could pay a lot of money sometimes, because Lambda function could take much more time to process it and returns back http message to the client.  
+
 
 - CORS is even necessary if we use Api Gateway. For example, we can get a such error in our browser:  
 ```
 /#contact:1 Access to fetch at 'https://saju3ypaz3.execute-api.eu-central-1.amazonaws.com/production/contact' from origin 'http://my-cv-website-04072024.s3-website.eu-central-1.amazonaws.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 ```
-
+So we must put this url into CORS rule in our Aws Api Gateway, in specific resource (`/contact`). In case of Cloudfront, we must provide with url of our domain name, e.g. https://example.com to CORS rule in Api GW.  
+We can also specify that all origins are allowed:  
+```bash
 aws apigatewayv2 update-api \
     --api-id $API_ID \
     --cors-configuration AllowOrigins="*",AllowMethods=POST,AllowHeaders="Content-Type"
-
+```
 
 ## Bonus  
 - `flask-return-401.py` is a simple app to show how Basic Auth work, by just handling http header (www-authenticate)
